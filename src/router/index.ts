@@ -15,11 +15,11 @@ export const router = createRouter({
 });
 
 
-router.beforeEach((to, from) => {
-    const userStore = useUserStore();
-    const user = userStore.getUser;
+// router.beforeEach((to, from) => {
+//     const userStore = useUserStore();
+//     const user = userStore.getUser;
 
-    if(!user.value && to.path === "/") {
-        return "/login"
-    }
-})
+//     if(!user.value && to.path === "/") {
+//         return "/login"
+//     }
+// })
