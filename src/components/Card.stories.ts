@@ -17,6 +17,17 @@ type Story = StoryObj<typeof Card>;
 export const Primary: Story = {
   args: {
     title: "this is story card",
-    subText: "Sub Text for test"
+    subText: "Sub Text for test",
+    content: "this is content"
   },
 };
+
+export const Secondary: Story = {
+    args: {
+      title: "this is story card 2",
+      subText: "Sub Text for test 2",
+      content: "this is content 2",
+      btn1Text: "Button",
+      btn2Text: "Button2"
+    },
+  };

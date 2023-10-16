@@ -2,7 +2,7 @@
     <div class="rounded-xl border border-gray-100 shadow-xl p-1">
         <h4 
             :class="[titlePosition === 'center' ? 'text-center': 
-            (titlePosition === 'start' ? 'text-left' : 'text-right'), 
+            (titlePosition === 'end' ? 'text-right' : 'text-left'), 
             'text-xl font-semibold py-3' ]"
         > 
             {{ title }} 
@@ -12,10 +12,10 @@
             {{ content }}
         </p>
         <div class="flex justify-around py-2 border-t border-gray-300">
-            <button class="border border-green-200 p-2 rounded-xl">
+            <button v-if="btn1Text" class="border border-green-200 p-2 rounded-xl">
                 {{ btn1Text }}
             </button>
-            <button class="border border-green-200 p-2 rounded-xl">
+            <button v-if="btn2Text" class="border border-green-200 p-2 rounded-xl">
                 {{ btn2Text }}
             </button>
         </div>
