@@ -12,8 +12,9 @@
         </nav>
 
         <div>
-            This is home
-            <Card />
+            <Card title="This is title"
+            sub-text="this is subtext"
+            title-position="end" />
         </div>
     </div>
 </template>

@@ -5,14 +5,17 @@ import {auth} from "@/scripts/firebase"
 
 export const useUserStore = defineStore('user', () => {
 
+    // state
     const authReady = ref(false);
-
-    const isAuthReady = computed(() => authReady);
-
     const user = ref<null|User>(null);
+
+
+    // getters
+    const isAuthReady = computed(() => authReady);
 
     const getUser = computed(() => user);
 
+    // mutations
     const setUser = (userData: User | null) => {
         user.value = userData;
     }
@@ -22,6 +25,13 @@ export const useUserStore = defineStore('user', () => {
     }
    
 
+    // actions
+
+    /**
+     * Method to signup user with it's info
+     * 
+     * @param {object} - object contains name, email and password
+     */
     const signUpUser = async ({name, email, password}) => {
         try {
             const res = await createUserWithEmailAndPassword(auth, email, password);
@@ -37,7 +47,12 @@ export const useUserStore = defineStore('user', () => {
         }
     }
 
-    const signInUser  = async ({email, password}) => {
+    /**
+     * Method to sign in user
+     * 
+     * @param {object} - the object contains email and password
+     */
+    const signInUser  =  async ({email, password}) => {
         try {
             const res = await signInWithEmailAndPassword(auth, email, password);
            
@@ -48,6 +63,9 @@ export const useUserStore = defineStore('user', () => {
         }
     }
 
+    /**
+     * Method to sign out current user
+     */
     const signOutUser = async()  => {
         try {
             await signOut(auth);
@@ -62,9 +80,16 @@ export const useUserStore = defineStore('user', () => {
     return {isAuthReady, setAuthIsReady, getUser, signUpUser, signInUser, signOutUser, setUser};
 })
 
-onAuthStateChanged(auth, (user) => {
+
+/**
+ * Watcher to update state as per auth load first time
+ */
+const authSwitcher = onAuthStateChanged(auth, (user) => {
     const store = useUserStore();
     
     store.setAuthIsReady(true);   
     store.setUser(user);
+
+    // runs this watcher once and after that remove it from call stack
+    authSwitcher();
 })

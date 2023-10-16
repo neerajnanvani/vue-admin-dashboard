@@ -90,11 +90,12 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-
+// props 
 defineProps({
     type: {
         type: String,
-        default: "register"
+        default: "register",
+        required: true
     },
     formButtonText: {
         type: String,
@@ -114,11 +115,10 @@ defineProps({
     }
 })
 
+// State
 const showPassword = ref(false);
 
+// All emits to update parent state
 defineEmits(['form-btn-click',"update:name", "update:email", "update:password", "update:confirmPassword"])
 
 </script>
-
-<style scoped>
-</style>

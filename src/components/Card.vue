@@ -1,24 +1,41 @@
 <template>
-    <div class="h-[300px] w-[200px] rounded-xl border border-gray-400 bg-gray-200">
-        <h4> {{ title }} </h4>
-        <p> {{ subText }} </p>
+    <div class="rounded-xl border border-gray-100 shadow-xl p-1">
+        <h4 
+            :class="[titlePosition === 'center' ? 'text-center': 
+            (titlePosition === 'start' ? 'text-left' : 'text-right'), 
+            'text-xl font-semibold py-3' ]"
+        > 
+            {{ title }} 
+        </h4>
+        <p class="border-b border-gray-300 text-sm font-extralight"> {{ subText }} </p>
+        <p class="text-center text-base font-medium py-5">
+            {{ content }}
+        </p>
+        <div class="flex justify-around py-2 border-t border-gray-300">
+            <button class="border border-green-200 p-2 rounded-xl">
+                {{ btn1Text }}
+            </button>
+            <button class="border border-green-200 p-2 rounded-xl">
+                {{ btn2Text }}
+            </button>
+        </div>
     </div>
 </template>
 
 <script setup lang="ts">
 
-defineProps({
-    title: String,
-    subText: String,
-})
+type titlePositionType =  "center" | "start" | "end";
+
+defineProps<{
+    title: string,
+    subText?: string,
+    titlePosition?: titlePositionType,
+    content?: string,
+    btn1Text?:string,
+    btn2Text?: string,
+}>()
 
 </script>
 
 <style scoped>
-
-div {
-    height: 200px;
-    width: 200px;
-    border: 2px solid black;
-}
 </style>

@@ -22,6 +22,7 @@ const password = ref("");
 const store = useUserStore();
 const router = useRouter();
 
+// push to the home if user already logged in
 onMounted(async () => {
     const user = store.getUser;
 
