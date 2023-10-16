@@ -42,7 +42,7 @@ async function logout() {
     }
 }
 
-onMounted(async () => {
+onMounted(() => {
     const user = store.getUser;
 
     if(user.value === null) {

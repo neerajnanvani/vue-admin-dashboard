@@ -23,10 +23,10 @@ const store = useUserStore();
 const router = useRouter();
 
 // push to the home if user already logged in
-onMounted(async () => {
+onMounted(() => {
     const user = store.getUser;
 
-    if(user) {
+    if(user.value) {
         router.push("/");
     }
 })
