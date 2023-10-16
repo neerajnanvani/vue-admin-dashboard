@@ -8,7 +8,8 @@
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "tailwind": "npx tailwind -i ./src/style.css -o ./src/style/tailwind-output.css --watch"
   },
   "dependencies": {
     "firebase": "10.5.0",
@@ -20,6 +21,7 @@
     "@storybook/addon-essentials": "^7.4.6",
     "@storybook/addon-interactions": "^7.4.6",
     "@storybook/addon-links": "^7.4.6",
+    "@storybook/addon-postcss": "^2.0.0",
     "@storybook/addon-styling-webpack": "^0.0.5",
     "@storybook/blocks": "^7.4.6",
     "@storybook/testing-library": "^0.2.2",

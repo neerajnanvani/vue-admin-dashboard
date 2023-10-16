@@ -16,6 +16,7 @@ type Story = StoryObj<typeof Card>;
  */
 export const Primary: Story = {
   args: {
-    title: "this is story card"
+    title: "this is story card",
+    subText: "Sub Text for test"
   },
 };

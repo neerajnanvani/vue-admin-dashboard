@@ -3,11 +3,11 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{vue,js,ts,jsx,tsx}",
+    "./src/**/*.stories.@(js|jsx|mjs|ts|tsx)"
   ],
   theme: {
     extend: {},
   },
   plugins: [],
-  purge: ['./src/**/*.{js,jsx,ts,tsx}'],
 }
 
