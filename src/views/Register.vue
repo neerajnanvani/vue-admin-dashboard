@@ -2,7 +2,8 @@
     <div class="w-full h-screen flex justify-center items-center bg-green-300">
         <CommonForm 
             type="register" 
-            form-button-text="Register" 
+            form-button-text="Register"
+            v-model:name="name"
             v-model:email="email"
             v-model:password="password"
             v-model:confirmPassword="confirmPassword"
@@ -13,17 +14,37 @@
 
 <script setup lang="ts">
 import CommonForm from '@/components/CommonForm.vue';
-import {ref, watch} from "vue";
+import { ref, onMounted } from "vue";
+import { useUserStore } from '@/store/userStore';
+import { useRouter } from 'vue-router';
 
+const store = useUserStore();
 
 // State
+const name = ref("");
 const email = ref("");
 const password = ref("");
 const confirmPassword = ref("");
+const router = useRouter();
+
+onMounted(async () => {
+    const user = store.getUser;
+
+    if(user) {
+        router.push("/");
+    }
+})
 
 // Functions
 
+/**
+ * Function to validate all fields for Registration Page
+ */
 function validateFields() {
+    if(!name.value) {
+        alert("Please fill name");
+        return false;
+    }
     if(!email.value) {
         alert("Please fill email");
         return false;
@@ -47,18 +68,16 @@ function validateFields() {
 /**
  * Method to register user
  */
-function formSubmit() {
+async function formSubmit() {
     const isFormValidated = validateFields();
 
     if(isFormValidated) {
-        console.log("Validated")
-    }
-    
-}
+        console.log("Validated");
 
-watch(() => email, () => {
-    console.log("Hello")
-});
+       await store.signUpUser({name: name.value, email: email.value, password: password.value});
+       router.push("/")
+    }
+}
 </script>
 <style scoped>
 </style>

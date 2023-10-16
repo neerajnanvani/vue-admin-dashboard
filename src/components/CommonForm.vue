@@ -5,7 +5,19 @@
                 {{type}}
             </h3>
         </div>
-        <div  class="">
+        <div v-if="type === 'register'">
+            <label class="text-md font-semibold pl-1">
+                Name
+            </label>
+            <input 
+                class="w-full shadow-inner p-2 rounded-xl bg-green-50 mt-2 focus:outline-green-300" 
+                type="text"
+                placeholder="Example Sharma" 
+                :value="name"
+                @input="$emit('update:name', ($event.target as HTMLInputElement).value)"
+            />
+        </div>
+        <div>
             <label class="text-md font-semibold pl-1">
                 Email
             </label>
@@ -17,7 +29,7 @@
                 @input="$emit('update:email', ($event.target as HTMLInputElement).value)"
             />
         </div>
-        <div class>
+        <div>
             <label class="text-md font-semibold pl-1">
                 Password
             </label>
@@ -88,6 +100,9 @@ defineProps({
         type: String,
         default: "Register"
     },
+    name: {
+        type: String,
+    },
     email: {
         type: String,
     },
@@ -101,7 +116,7 @@ defineProps({
 
 const showPassword = ref(false);
 
-defineEmits(['form-btn-click', "update:email", "update:password", "update:confirmPassword"])
+defineEmits(['form-btn-click',"update:name", "update:email", "update:password", "update:confirmPassword"])
 
 </script>
 
